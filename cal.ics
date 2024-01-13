@@ -5,7 +5,7 @@
   <meta name="keywords" content="HTML">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
   <link href="https://sitewebmaintenance.umontpellier.fr/helpstyle.css" rel="stylesheet" type="text/css">
-  <title>Service en maintenance</title>
+  <title>Service indisponible</title>
  </head>
 
 
@@ -15,7 +15,7 @@
     <img src="https://sitewebmaintenance.umontpellier.fr/logo_um.gif" alt="logo um" title="logo um" width="130px" height="130px">
     <h1>Informations</h1>
 
-    <h2>Le service auquel vous essayez d'accéder est actuellement en maintenance.<br>Code d'erreur: LB503<br/> Merci de renouveler votre demande ultérieurement.</h2>
+    <h2>Le service auquel vous essayez d'accéder est actuellement indisponible.<br>Code d'erreur: LB503<br/> Merci de renouveler votre demande ultérieurement.</h2>
   </div>
  </body>
 </html>
