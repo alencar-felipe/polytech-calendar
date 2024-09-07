@@ -2,7 +2,7 @@ name: "update-calendar"
 on:
   schedule:
   - cron: "0 4 * * *"
-  
+
   push:
     branches:
       - main
@@ -14,16 +14,26 @@ jobs:
       - name: Checkout master branch
         uses: actions/checkout@v2
 
-      - name: Download calendar
-        run: wget -O cal.ics ${{ secrets.CALENDAR_URL }}
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run script to generate calendar
+        env:
+          CALENDAR_URL: ${{ secrets.CALENDAR_URL }}
+        run: python main.py
 
       - name: Setup identity
         run: |
           git config --global user.email "bot@example.com"
           git config --global user.name "Github Actions"
-          
+
       - name: Commit if the calendar changes
         run: (test -n "$(git diff)" && git add cal.ics && git commit -m 'update-calendar') || true
-          
+
       - name: Push changes
         run: git push
