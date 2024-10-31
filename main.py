@@ -72,6 +72,7 @@ FILTER_OUT = [
     "Exam CIN 2",
     "Exam Modélisation 3D",
     "Exam syst OS TR",
+    "FLE DDL S1",
     # "FP - CM - Programmation Fonctionnelle Faaiz",
     # "FP - CM - Programmation Fonctionnelle N. nouguier",
     # "FP - TD option 1 - Programmation Fonctionnelle Faaiz",
