@@ -1,4 +1,5 @@
 from icalendar import Calendar
+from datetime import datetime
 import os
 import requests
 
@@ -20,13 +21,20 @@ FILTER_OUT = [
     "Algo avancée 1 Examen",
     "Algo avancée 1 TD1",
     "Algo avancée 1 TD2",
+    "Algo avancée 2 CM",
+    "Algo avancée 2 CMTD1",
+    "Algo avancée 2 CMTD2",
+    "Algo avancée 2 TD1",
+    "Algo avancée 2 TD2",
     "Anglais G1",
     "Anglais G2",
+    "Anglais Rattrapage",
     "Anglais TD1",
     "Anglais TD2",
     "ArchiCirc. Num 1",
     "Architecture Avancée des CIN",
     "Atelier management responsable",
+    "Atelier robotique",
     "Attribution projets S7",
     "BdD distribuées et noSQL CM",
     "BdD distribuées et noSQL Examen",
@@ -35,25 +43,31 @@ FILTER_OUT = [
     "BdD distribuées et noSQL TP1",
     "BdD distribuées et noSQL TP2",
     "Business models et Data",
-    "Capteurs et Microsystèmes",
-    "CIA 2",
     "CIA 2 : auto-formation",
+    "CIA 2",
     "CIA/CIN, Révision",
     "CIN 2",
     "CM - avant vente",
-    "Conférence MEA5",
-    "Conférence MEA5-SE5",
     "CPO2 CMTD1",
     "CPO2 CMTD2",
     "CPO2 Examen",
     "CPO2 TD1",
     "CPO2 TD2",
+    "Capteurs et Microsystèmes",
+    "Conférence Introduction à la robotique sous-marine par Vincent Creuze",
+    "Conférence MEA5",
+    "Conférence MEA5-SE5",
     # "Cohésion IG",
     "Conférence handicap et insertion pro",
     "Conseil pédagogique",
+    "Contrats pro en 5A",
+    "DDRS - Grp1 (restitution)",
     "DDRS - Grp1",
+    "DDRS - Grp2 (restitution)",
     "DDRS - Grp2",
+    "DDRS - Grp3 (restitution)",
     "DDRS - Grp3",
+    "DDRS - Grp4 (restitution)",
     "DDRS - Grp4",
     "DDRS - introduction",
     "DDRS - restitution",
@@ -65,8 +79,14 @@ FILTER_OUT = [
     # "Deep learning CM",
     # "Deep learning TP 1",
     # "Deep learning TP 2",
+    "Design Thinking TD1",
+    "Design Thinking TD2",
+    "Dev Appli Mobiles CM",
+    "Dev Appli Mobiles CMTD1",
+    "Dev Appli Mobiles CMTD2",
     "Droit du travail (MEA5)",
     "Droit du travail, Examen",
+    "EXAM-Capteurs",
     # "Econométrie - CM - Polytech techniques de scoring",
     # "Econométrie - Examen techniques de scoring",
     "Entrepôts 2. Reporting et + CM",
@@ -87,6 +107,8 @@ FILTER_OUT = [
     "Expérience utilisateur TD1",
     "Expérience utilisateur TD2",
     "FLE DDL S1",
+    "FLE DDL S2",
+    "Fabrication microélectronique (salle blanche)",
     # "FP - CM - Programmation Fonctionnelle Faaiz",
     # "FP - CM - Programmation Fonctionnelle N. nouguier",
     # "FP - TD option 1 - Programmation Fonctionnelle Faaiz",
@@ -135,12 +157,16 @@ FILTER_OUT = [
     "Informations Mobilités Internationales (FISE 4A) - Amphi 5.01 Bât5",
     "Insertion Pro",
     "Insertion Pro TD1",
+    "Insertion Pro CMTD1",
+    "Insertion Pro CMTD2",
     "Insertion Pro TD2",
-    # "Journées blanches",
+    "Journées blanches",
     "Livrables PFE_Eco-conception ISIA",
     "MSST2",
     "Management de la qualité",
+    "Management des SI CMTD1 autonomie",
     "Management des SI CMTD1",
+    "Management des SI CMTD2 autonomie",
     "Management des SI CMTD2",
     "Management des SI Examen",
     "Marketing et innov CMTD1",
@@ -205,6 +231,7 @@ FILTER_OUT = [
     "Présentation Sujets PFE",
     # "Présentation partenaire académique UFRGS (Brésil)",
     # "Remise des diplômes (banalisation des cours)",
+    "Remédiation : fabrication microélectronique",
     "Rentrée IG5",
     "Rentrée MEA4 (SC001)",
     "Rentrée MEA5",
@@ -226,7 +253,7 @@ FILTER_OUT = [
     # "SSI - Sécurité des Systèmes d'Information-lucato",
     "SSI - TP Crypto - MEA5",
     "SSI : CM. Crypto MI5 MEA5",
-    "Santé et Sécurité au travail"
+    "Santé et Sécurité au travail",
     # "ScikitLearn Débutant",
     # "Semaine Internationale - Global Village",
     # "Semaine Internationale - Global Village - FISE FISA 4A (SC101+SC102+SR121)",
@@ -259,9 +286,9 @@ FILTER_OUT = [
     # "Systèmes de recommandation TP2",
     "Sûreté de fonctionnement en robotique (CM - KGD)",
     "Sûreté de fonctionnement en robotique (TP - KGD)",
-    "T. analogique du signal",
     "T. analogique du signal (FM)",
     "T. analogique du signal (GC)",
+    "T. analogique du signal",
     "T. analogique du signal, 1/3 temps",
     "T. analogique du signal, Examen",
     # "TD O1 - Econométrie techniques de scoring",
@@ -269,6 +296,12 @@ FILTER_OUT = [
     "TD option 1 -avant vente",
     "TSI - CM - Tests des Systèmes d'Information",
     "TSI - TP Tests des Systèmes d'Information",
+    "Tests, qualité et CI CM",
+    "Tests, qualité et CI TP1",
+    "Tests, qualité et CI TP2",
+    "Tests, qualité et CI TP3",
+    "Théorie des jeux TD1",
+    "Théorie des jeux TD2",
     "Tiers-temps ArchiCirc. Num 1",
     "Tiers-temps CIN 2",
     "Tiers-temps Modélisation 3D",
@@ -278,6 +311,7 @@ FILTER_OUT = [
     "creation profil linkind IG5 option 1",
     "creation profil linkind IG5 option 2"
 ]
+
 
 def fetch_calendar(url):
     response = requests.get(url)
@@ -291,7 +325,12 @@ def process_event(event):
     if summary in FILTER_OUT:
         return None
 
+    start = event.get('DTSTART')
+    if start and start.dt > datetime(2025, 3, 7, tzinfo=start.dt.tzinfo):
+        return None
+
     return event
+
 
 def filter_calendar(calendar):
     result = Calendar()
